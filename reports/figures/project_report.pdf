@@ -1,5 +1,3 @@
-# project_report.py
-
 from reportlab.platypus import (
     SimpleDocTemplate,
     Paragraph,
@@ -7,9 +5,8 @@ from reportlab.platypus import (
     PageBreak
 )
 from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib import colors
 
-# Create PDF
+# Create PDF document
 pdf = SimpleDocTemplate("project_report.pdf")
 
 # Styles
@@ -19,155 +16,220 @@ title_style = styles["Title"]
 heading_style = styles["Heading2"]
 body_style = styles["BodyText"]
 
-# Content
 content = []
 
-# Title
-content.append(Paragraph("Vehicle Traffic Analysis Project Report", title_style))
-content.append(Spacer(1, 12))
+# Title Page
+content.append(
+    Paragraph(
+        "Vehicle Traffic Analysis Using Machine Learning",
+        title_style
+    )
+)
+
+content.append(Spacer(1, 20))
+
+content.append(
+    Paragraph(
+        "Project Report",
+        heading_style
+    )
+)
+
+content.append(
+    Paragraph(
+        "Prepared By: Nagendra D M",
+        body_style
+    )
+)
+
+content.append(
+    Paragraph(
+        "Academic Mini Project",
+        body_style
+    )
+)
+
+content.append(PageBreak())
 
 # Introduction
 content.append(Paragraph("1. Introduction", heading_style))
 content.append(
     Paragraph(
         """
-        The Vehicle Traffic Analysis project aims to analyze traffic data,
-        identify traffic patterns, and predict traffic density using
-        machine learning techniques.
+        Vehicle Traffic Analysis is a machine learning project
+        developed to analyze traffic-related data and predict
+        traffic density. The system helps understand traffic
+        patterns and supports data-driven decision making.
         """,
-        body_style,
+        body_style
     )
 )
-content.append(Spacer(1, 10))
+
+content.append(Spacer(1, 12))
 
 # Objectives
 content.append(Paragraph("2. Objectives", heading_style))
 content.append(
     Paragraph(
         """
-        • Analyze traffic-related datasets.<br/>
-        • Perform data preprocessing and feature engineering.<br/>
-        • Train machine learning models for traffic prediction.<br/>
-        • Evaluate model performance.<br/>
-        • Visualize traffic trends and prediction results.
+        • Analyze vehicle traffic datasets.<br/>
+        • Perform data preprocessing.<br/>
+        • Engineer useful features.<br/>
+        • Train a machine learning model.<br/>
+        • Predict traffic density.<br/>
+        • Evaluate model performance.
         """,
-        body_style,
+        body_style
     )
 )
-content.append(Spacer(1, 10))
+
+content.append(Spacer(1, 12))
 
 # Dataset
 content.append(Paragraph("3. Dataset Description", heading_style))
 content.append(
     Paragraph(
         """
-        The dataset contains vehicle traffic information such as vehicle count,
-        traffic density, road conditions, weather conditions, and time-based
-        traffic observations.
+        The dataset contains vehicle-related information such as
+        vehicle count, speed, weather conditions, road conditions,
+        and traffic density values.
         """,
-        body_style,
+        body_style
     )
 )
-content.append(Spacer(1, 10))
 
-# Data Preprocessing
+content.append(Spacer(1, 12))
+
+# Preprocessing
 content.append(Paragraph("4. Data Preprocessing", heading_style))
 content.append(
     Paragraph(
         """
-        Data preprocessing involved handling missing values, removing duplicate
-        records, converting categorical variables into numerical format, and
-        scaling numerical features using StandardScaler.
+        Data preprocessing includes handling missing values,
+        removing duplicates, encoding categorical variables,
+        and preparing data for machine learning algorithms.
         """,
-        body_style,
+        body_style
     )
 )
-content.append(Spacer(1, 10))
+
+content.append(Spacer(1, 12))
 
 # Feature Engineering
 content.append(Paragraph("5. Feature Engineering", heading_style))
 content.append(
     Paragraph(
         """
-        Feature engineering included selecting important attributes and
-        transforming data into a suitable format for machine learning models.
-        """
-        ,
-        body_style,
+        Feature engineering is performed to improve model
+        performance by selecting and transforming useful
+        features from the dataset.
+        """,
+        body_style
     )
 )
-content.append(Spacer(1, 10))
+
+content.append(Spacer(1, 12))
 
 # Model Training
 content.append(Paragraph("6. Model Training", heading_style))
 content.append(
     Paragraph(
         """
-        A Random Forest Regressor model was trained using the processed
-        dataset. The model learns traffic patterns and predicts traffic
-        density based on input features.
+        A Random Forest Regressor model is trained using
+        processed traffic data. The trained model is saved
+        as trained_model.pkl.
         """,
-        body_style,
+        body_style
     )
 )
-content.append(Spacer(1, 10))
+
+content.append(Spacer(1, 12))
 
 # Evaluation
 content.append(Paragraph("7. Model Evaluation", heading_style))
 content.append(
     Paragraph(
         """
-        The model was evaluated using performance metrics such as:
-        <br/>• Mean Absolute Error (MAE)
-        <br/>• R² Score
-        <br/>These metrics help determine prediction accuracy.
+        The model performance is evaluated using:
+        <br/>
+        • Mean Absolute Error (MAE)
+        <br/>
+        • R² Score
         """,
-        body_style,
+        body_style
     )
 )
-content.append(Spacer(1, 10))
+
+content.append(Spacer(1, 12))
 
 # Visualizations
 content.append(Paragraph("8. Visualizations", heading_style))
 content.append(
     Paragraph(
         """
-        The project generated:
-        <br/>• traffic_trend.png
-        <br/>• prediction_results.png
-        <br/>These visualizations help understand traffic behavior and model performance.
+        The project generates:
+        <br/>
+        • traffic_trend.png
+        <br/>
+        • prediction_results.png
+        <br/>
+        These visualizations help understand traffic patterns
+        and prediction performance.
         """,
-        body_style,
+        body_style
     )
 )
-content.append(Spacer(1, 10))
 
-# Conclusion
-content.append(Paragraph("9. Conclusion", heading_style))
+content.append(Spacer(1, 12))
+
+# Outputs
+content.append(Paragraph("9. Project Outputs", heading_style))
 content.append(
     Paragraph(
         """
-        The Vehicle Traffic Analysis project successfully demonstrates how
-        machine learning can be used to analyze and predict traffic density.
-        The trained model can assist in traffic management and decision-making.
+        • cleaned_vehicle.csv<br/>
+        • trained_model.pkl<br/>
+        • scaler.pkl<br/>
+        • traffic_trend.png<br/>
+        • prediction_results.png<br/>
+        • project_report.pdf
         """,
-        body_style,
+        body_style
+    )
+)
+
+content.append(Spacer(1, 12))
+
+# Conclusion
+content.append(Paragraph("10. Conclusion", heading_style))
+content.append(
+    Paragraph(
+        """
+        The Vehicle Traffic Analysis project demonstrates
+        the application of machine learning techniques for
+        traffic prediction. The system successfully preprocesses
+        data, trains a predictive model, evaluates performance,
+        and generates useful visualizations.
+        """,
+        body_style
     )
 )
 
 content.append(PageBreak())
 
 # References
-content.append(Paragraph("10. References", heading_style))
+content.append(Paragraph("11. References", heading_style))
 content.append(
     Paragraph(
         """
         1. Python Documentation<br/>
-        2. Scikit-Learn Documentation<br/>
-        3. Pandas Documentation<br/>
-        4. Matplotlib Documentation
+        2. Pandas Documentation<br/>
+        3. NumPy Documentation<br/>
+        4. Scikit-Learn Documentation<br/>
+        5. Matplotlib Documentation<br/>
+        6. ReportLab Documentation
         """,
-        body_style,
+        body_style
     )
 )
 
