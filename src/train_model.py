@@ -1,42 +1,52 @@
 # train_model.py
 
+import os
 import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import (
-    mean_absolute_error,
-    mean_squared_error,
-    r2_score
-)
 import joblib
 
-# Load feature-engineered dataset
-input_file = "../data/processed/featured_vehicle.csv"
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-print("Loading dataset...")
-df = pd.read_csv(input_file)
+# ==========================
+# Load Dataset
+# ==========================
 
-print("\nDataset Shape:", df.shape)
+DATA_PATH = "data/processed/cleaned_vehicle.csv"
 
-# Define target column
-target_column = "traffic_volume"
+df = pd.read_csv(DATA_PATH)
+
+print("Dataset Loaded Successfully")
+print("Shape:", df.shape)
+
+# ==========================
+# Select Features & Target
+# ==========================
+
+# Replace 'Vehicles' with your target column name if different
+target_column = "Vehicles"
 
 if target_column not in df.columns:
     raise ValueError(
-        f"Target column '{target_column}' not found in dataset."
+        f"Target column '{target_column}' not found.\n"
+        f"Available columns: {list(df.columns)}"
     )
 
-# Separate features and target
 X = df.drop(columns=[target_column])
 y = df[target_column]
 
-# Convert categorical columns to numerical
+# ==========================
+# Handle Categorical Columns
+# ==========================
+
 X = pd.get_dummies(X, drop_first=True)
 
-print("\nFeature Matrix Shape:", X.shape)
+print("Feature Shape:", X.shape)
 
+# ==========================
 # Train-Test Split
+# ==========================
+
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
@@ -44,11 +54,9 @@ X_train, X_test, y_train, y_test = train_test_split(
     random_state=42
 )
 
-print("Training Samples:", X_train.shape[0])
-print("Testing Samples:", X_test.shape[0])
-
+# ==========================
 # Train Model
-print("\nTraining Random Forest Model...")
+# ==========================
 
 model = RandomForestRegressor(
     n_estimators=100,
@@ -57,23 +65,35 @@ model = RandomForestRegressor(
 
 model.fit(X_train, y_train)
 
+print("Model Training Completed")
+
+# ==========================
 # Predictions
+# ==========================
+
 y_pred = model.predict(X_test)
 
+# ==========================
 # Evaluation
+# ==========================
+
 mae = mean_absolute_error(y_test, y_pred)
 mse = mean_squared_error(y_test, y_pred)
-rmse = np.sqrt(mse)
 r2 = r2_score(y_test, y_pred)
 
-print("\nModel Evaluation")
+print("\nModel Performance")
 print("-" * 30)
-print("MAE :", round(mae, 2))
-print("MSE :", round(mse, 2))
-print("RMSE:", round(rmse, 2))
-print("R² Score:", round(r2, 4))
+print("MAE :", round(mae, 4))
+print("MSE :", round(mse, 4))
+print("R²  :", round(r2, 4))
 
-# Feature Importance
-feature_importance = pd.DataFrame({
-    "Feature": X.columns,
-    "
+# ==========================
+# Save Model
+# ==========================
+
+os.makedirs("models", exist_ok=True)
+
+joblib.dump(model, "models/vehicle_model.pkl")
+
+print("\nModel saved successfully!")
+print("Location: models/vehicle_model.pkl")
