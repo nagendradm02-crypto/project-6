@@ -1,0 +1,83 @@
+Python cache files
+
+pycache/
+*.py[cod]
+*$py.class
+
+Virtual environments
+
+venv/
+env/
+ENV/
+.venv/
+
+Jupyter Notebook checkpoints
+
+.ipynb_checkpoints/
+
+VS Code
+
+.vscode/
+
+PyCharm
+
+.idea/
+
+Operating system files
+
+.DS_Store
+Thumbs.db
+
+Log files
+
+*.log
+
+Environment variables
+
+.env
+
+Build and distribution files
+
+build/
+dist/
+*.egg-info/
+
+Python testing cache
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+Model files (optional)
+
+trained_model.pkl
+scaler.pkl
+
+Generated reports
+
+*.pdf
+
+Generated images
+
+*.png
+
+Processed datasets
+
+data/processed/
+
+Temporary files
+
+*.tmp
+*.temp
+
+Jupyter runtime files
+
+.jupyter/
+
+Spyder project settings
+
+.spyproject/
+
+Rope project settings
+
+.ropeproject/
