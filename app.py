@@ -1,60 +1,47 @@
-# main.py
 
-import os
-import subprocess
+# app.py
 
+import streamlit as st
+import pandas as pd
+import joblib
 
-def run_script(script_path):
-    """
-    Execute a Python script and display status.
-    """
-    print(f"\nRunning {script_path}...")
+# Load model
+@st.cache_resource
+def load_model():
+    return joblib.load("models/vehicle_model.pkl")
 
-    try:
-        subprocess.run(
-            ["python", script_path],
-            check=True
-        )
-        print(f"{script_path} completed successfully.")
+model = load_model()
 
-    except subprocess.CalledProcessError as e:
-        print(f"Error while running {script_path}")
-        print(e)
+# App Title
+st.title("🚗 Vehicle Traffic Analysis")
+st.write("Predict vehicle traffic using the trained machine learning model.")
 
+st.sidebar.header("Input Features")
 
-def main():
+# User Inputs
+feature1 = st.sidebar.number_input("Feature 1", value=10.0)
+feature2 = st.sidebar.number_input("Feature 2", value=20.0)
+feature3 = st.sidebar.number_input("Feature 3", value=30.0)
+feature4 = st.sidebar.number_input("Feature 4", value=40.0)
 
-    print("=" * 50)
-    print("VEHICLE TRAFFIC ANALYSIS PROJECT")
-    print("=" * 50)
+# Create DataFrame
+input_data = pd.DataFrame({
+    "Feature1": [feature1],
+    "Feature2": [feature2],
+    "Feature3": [feature3],
+    "Feature4": [feature4]
+})
 
-    scripts = [
-        "src/data_preprocessing.py",
-        "src/feature_engineering.py",
-        "src/train_model.py",
-        "src/evaluate.py",
-        "project_report.py"
-    ]
+st.subheader("Input Data")
+st.write(input_data)
 
-    for script in scripts:
+# Prediction
+if st.button("Predict"):
 
-        if os.path.exists(script):
-            run_script(script)
-        else:
-            print(f"File not found: {script}")
+    prediction = model.predict(input_data)
 
-    print("\n" + "=" * 50)
-    print("PROJECT EXECUTION COMPLETED")
-    print("=" * 50)
+    st.subheader("Prediction Result")
+    st.success(f"Predicted Value: {prediction[0]:.2f}")
 
-    print("\nGenerated Files:")
-    print("- cleaned_vehicle.csv")
-    print("- trained_model.pkl")
-    print("- scaler.pkl")
-    print("- traffic_trend.png")
-    print("- prediction_results.png")
-    print("- project_report.pdf")
-
-
-if __name__ == "__main__":
-    main()
+st.markdown("---")
+st.write("Vehicle Traffic Analysis Project")
