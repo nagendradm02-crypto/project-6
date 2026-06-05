@@ -1,83 +1,139 @@
-Python cache files
-
-pycache/
+# =========================
+# Python Cache Files
+# =========================
+__pycache__/
 *.py[cod]
 *$py.class
 
-Virtual environments
-
+# =========================
+# Virtual Environments
+# =========================
 venv/
 env/
 ENV/
 .venv/
 
-Jupyter Notebook checkpoints
-
+# =========================
+# Jupyter Notebook
+# =========================
 .ipynb_checkpoints/
 
-VS Code
-
+# =========================
+# IDE Settings
+# =========================
 .vscode/
-
-PyCharm
-
 .idea/
 
-Operating system files
-
+# =========================
+# Operating System Files
+# =========================
 .DS_Store
 Thumbs.db
+desktop.ini
 
-Log files
+# =========================
+# Environment Variables
+# =========================
+.env
+.env.*
 
+# =========================
+# Logs
+# =========================
 *.log
 
-Environment variables
-
-.env
-
-Build and distribution files
-
+# =========================
+# Build Files
+# =========================
 build/
 dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
+.installed.cfg
+*.egg
 
-Python testing cache
-
+# =========================
+# Testing
+# =========================
 .pytest_cache/
 .coverage
+.coverage.*
 htmlcov/
 
-Model files (optional)
-
+# =========================
+# Model Files
+# =========================
 trained_model.pkl
 scaler.pkl
 
-Generated reports
+# =========================
+# Generated Reports
+# =========================
+project_report.pdf
 
-*.pdf
+# =========================
+# Generated Visualizations
+# =========================
+traffic_trend.png
+prediction_results.png
 
-Generated images
-
-*.png
-
-Processed datasets
-
+# =========================
+# Processed Data
+# =========================
 data/processed/
+*.csv.bak
 
-Temporary files
-
+# =========================
+# Temporary Files
+# =========================
 *.tmp
 *.temp
+*.swp
 
-Jupyter runtime files
+# =========================
+# Python Tool Cache
+# =========================
+.mypy_cache/
+.ruff_cache/
+.pyre/
 
+# =========================
+# Jupyter Runtime
+# =========================
 .jupyter/
 
-Spyder project settings
-
+# =========================
+# Spyder
+# =========================
 .spyproject/
 
-Rope project settings
-
+# =========================
+# Rope
+# =========================
 .ropeproject/
+
+# =========================
+# Local Database Files
+# =========================
+*.db
+*.sqlite3
+
+# =========================
+# Backup Files
+# =========================
+*.bak
+*.old
+
+# =========================
+# Generated Files
+# =========================
+*.pdf
+*.png
