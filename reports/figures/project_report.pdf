@@ -1,0 +1,177 @@
+# project_report.py
+
+from reportlab.platypus import (
+    SimpleDocTemplate,
+    Paragraph,
+    Spacer,
+    PageBreak
+)
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import colors
+
+# Create PDF
+pdf = SimpleDocTemplate("project_report.pdf")
+
+# Styles
+styles = getSampleStyleSheet()
+
+title_style = styles["Title"]
+heading_style = styles["Heading2"]
+body_style = styles["BodyText"]
+
+# Content
+content = []
+
+# Title
+content.append(Paragraph("Vehicle Traffic Analysis Project Report", title_style))
+content.append(Spacer(1, 12))
+
+# Introduction
+content.append(Paragraph("1. Introduction", heading_style))
+content.append(
+    Paragraph(
+        """
+        The Vehicle Traffic Analysis project aims to analyze traffic data,
+        identify traffic patterns, and predict traffic density using
+        machine learning techniques.
+        """,
+        body_style,
+    )
+)
+content.append(Spacer(1, 10))
+
+# Objectives
+content.append(Paragraph("2. Objectives", heading_style))
+content.append(
+    Paragraph(
+        """
+        • Analyze traffic-related datasets.<br/>
+        • Perform data preprocessing and feature engineering.<br/>
+        • Train machine learning models for traffic prediction.<br/>
+        • Evaluate model performance.<br/>
+        • Visualize traffic trends and prediction results.
+        """,
+        body_style,
+    )
+)
+content.append(Spacer(1, 10))
+
+# Dataset
+content.append(Paragraph("3. Dataset Description", heading_style))
+content.append(
+    Paragraph(
+        """
+        The dataset contains vehicle traffic information such as vehicle count,
+        traffic density, road conditions, weather conditions, and time-based
+        traffic observations.
+        """,
+        body_style,
+    )
+)
+content.append(Spacer(1, 10))
+
+# Data Preprocessing
+content.append(Paragraph("4. Data Preprocessing", heading_style))
+content.append(
+    Paragraph(
+        """
+        Data preprocessing involved handling missing values, removing duplicate
+        records, converting categorical variables into numerical format, and
+        scaling numerical features using StandardScaler.
+        """,
+        body_style,
+    )
+)
+content.append(Spacer(1, 10))
+
+# Feature Engineering
+content.append(Paragraph("5. Feature Engineering", heading_style))
+content.append(
+    Paragraph(
+        """
+        Feature engineering included selecting important attributes and
+        transforming data into a suitable format for machine learning models.
+        """
+        ,
+        body_style,
+    )
+)
+content.append(Spacer(1, 10))
+
+# Model Training
+content.append(Paragraph("6. Model Training", heading_style))
+content.append(
+    Paragraph(
+        """
+        A Random Forest Regressor model was trained using the processed
+        dataset. The model learns traffic patterns and predicts traffic
+        density based on input features.
+        """,
+        body_style,
+    )
+)
+content.append(Spacer(1, 10))
+
+# Evaluation
+content.append(Paragraph("7. Model Evaluation", heading_style))
+content.append(
+    Paragraph(
+        """
+        The model was evaluated using performance metrics such as:
+        <br/>• Mean Absolute Error (MAE)
+        <br/>• R² Score
+        <br/>These metrics help determine prediction accuracy.
+        """,
+        body_style,
+    )
+)
+content.append(Spacer(1, 10))
+
+# Visualizations
+content.append(Paragraph("8. Visualizations", heading_style))
+content.append(
+    Paragraph(
+        """
+        The project generated:
+        <br/>• traffic_trend.png
+        <br/>• prediction_results.png
+        <br/>These visualizations help understand traffic behavior and model performance.
+        """,
+        body_style,
+    )
+)
+content.append(Spacer(1, 10))
+
+# Conclusion
+content.append(Paragraph("9. Conclusion", heading_style))
+content.append(
+    Paragraph(
+        """
+        The Vehicle Traffic Analysis project successfully demonstrates how
+        machine learning can be used to analyze and predict traffic density.
+        The trained model can assist in traffic management and decision-making.
+        """,
+        body_style,
+    )
+)
+
+content.append(PageBreak())
+
+# References
+content.append(Paragraph("10. References", heading_style))
+content.append(
+    Paragraph(
+        """
+        1. Python Documentation<br/>
+        2. Scikit-Learn Documentation<br/>
+        3. Pandas Documentation<br/>
+        4. Matplotlib Documentation
+        """,
+        body_style,
+    )
+)
+
+# Build PDF
+pdf.build(content)
+
+print("project_report.pdf generated successfully!")
